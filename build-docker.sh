@@ -9,7 +9,7 @@ docker buildx create --use --name gobuild --driver docker-container --driver-opt
 docker buildx use gobuild
 
 # 需要多平台支持: --platform linux/arm,linux/arm64,linux/amd64
-docker buildx build -t bytepoweredgo/httpd:latest . --output=type=docker
+docker buildx build --platform linux/amd64,linux/arm64 --push -t bytepoweredgo/httpd:latest .
 
 if [ $? -eq 0 ]; then
    docker tag bytepoweredgo/httpd:latest bytepoweredgo/httpd:${REPO_VERSION}

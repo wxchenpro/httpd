@@ -1,4 +1,5 @@
-FROM golang:alpine AS build
+FROM --platform=$BUILDPLATFORM golang:alpine AS build
+ARG BUILDPLATFORM
 ARG TARGETPLATFORM
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
     && go get github.com/mitchellh/gox && apk add --no-cache upx
